@@ -7,6 +7,7 @@ import { durationLabel, dateKey, minutesToHHMM, pad2 } from "../lib/time";
 import type { Entry } from "../lib/types";
 import { HOUR_PX, type ViewProps } from "./shared";
 import { TodoList } from "./TodoList";
+import { deedsDoneToday } from "../lib/goals";
 
 interface DayViewProps extends ViewProps {
   onEdit: (entry: Entry) => void;
@@ -50,6 +51,15 @@ export function DayView({ data, lang, date, update, onEdit, onCreate }: DayViewP
         <Stat label={t(lang, "plannedHours")} value={durationLabel(stats.plannedMinutes, lang)} />
         <Stat label={t(lang, "doneHours")} value={durationLabel(stats.doneMinutes, lang)} />
       </div>
+
+      {data.goodDeeds.length > 0 && (
+        <div className="good-deeds-strip">
+          <span className="muted small">{t(lang, "goodDeedsTitle")}</span>
+          <strong>
+            {deedsDoneToday(data.goodDeeds, data.goodDeedDone, date)}/{data.goodDeeds.length}
+          </strong>
+        </div>
+      )}
 
       <TodoList lang={lang} date={date} todos={data.todos} update={update} />
 
