@@ -41,6 +41,19 @@ export interface Todo {
   done: boolean;
 }
 
+/** Long-lived goals tracked as a simple checklist. */
+export interface Goal {
+  id: string;
+  title: string;
+  done: boolean;
+}
+
+/** A recurring good-deed habit the user can check off each day. */
+export interface GoodDeed {
+  id: string;
+  title: string;
+}
+
 export type Lang = "fa" | "en";
 
 export interface PlannerData {
@@ -50,5 +63,8 @@ export interface PlannerData {
   completed: Record<string, true>;
   reviews: Record<string, string>;
   todos: Todo[];
+  goals: Goal[];
+  goodDeeds: GoodDeed[];
+  goodDeedDone: Record<string, true>;
   lang: Lang;
 }
