@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DayView } from "./components/DayView";
+import { GoalsView } from "./components/GoalsView";
 import { EntryForm, type EditorState } from "./components/EntryForm";
 import { ReviewView } from "./components/ReviewView";
 import { SettingsView } from "./components/SettingsView";
@@ -12,11 +13,12 @@ import { loadData, saveData } from "./lib/storage";
 import { addDays, dateKey } from "./lib/time";
 import type { PlannerData } from "./lib/types";
 
-type Tab = "day" | "week" | "review" | "templates" | "settings";
+type Tab = "day" | "week" | "goals" | "review" | "templates" | "settings";
 
 const TABS: Array<{ id: Tab; key: Key }> = [
   { id: "day", key: "tabDay" },
   { id: "week", key: "tabWeek" },
+  { id: "goals", key: "tabGoals" },
   { id: "review", key: "tabReview" },
   { id: "templates", key: "tabTemplates" },
   { id: "settings", key: "tabSettings" },
@@ -150,6 +152,7 @@ export default function App() {
             }}
           />
         )}
+        {tab === "goals" && <GoalsView {...sharedProps} />}
         {tab === "review" && <ReviewView {...sharedProps} />}
         {tab === "templates" && <TemplatesView {...sharedProps} />}
         {tab === "settings" && <SettingsView data={data} lang={lang} update={update} />}
