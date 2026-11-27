@@ -124,6 +124,11 @@ export function SettingsView({ data, lang, update }: SettingsViewProps) {
       </div>
 
       <div className="card">
+        <h3 className="subsection-title">{t(lang, "homeScreenTitle")}</h3>
+        <p className="hint">{t(lang, "homeScreenTip")}</p>
+      </div>
+
+      <div className="card">
         <h3 className="subsection-title">{t(lang, "installTitle")}</h3>
         <p className="hint">{t(lang, "installSteps")}</p>
         <p className="hint">{t(lang, "widgetHint")}</p>

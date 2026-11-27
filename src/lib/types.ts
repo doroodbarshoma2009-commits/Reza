@@ -34,6 +34,13 @@ export interface Template {
   items: TemplateItem[];
 }
 
+export interface Todo {
+  id: string;
+  title: string;
+  date: string;
+  done: boolean;
+}
+
 export type Lang = "fa" | "en";
 
 export interface PlannerData {
@@ -42,5 +49,6 @@ export interface PlannerData {
   templates: Template[];
   completed: Record<string, true>;
   reviews: Record<string, string>;
+  todos: Todo[];
   lang: Lang;
 }

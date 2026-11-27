@@ -3,7 +3,7 @@ import type { PlannerData } from "./types";
 const STORAGE_KEY = "day-planner:v1";
 
 export function emptyData(): PlannerData {
-  return { version: 1, entries: [], templates: [], completed: {}, reviews: {}, lang: "fa" };
+  return { version: 1, entries: [], templates: [], completed: {}, reviews: {}, todos: [], lang: "fa" };
 }
 
 export function loadData(storage: Pick<Storage, "getItem"> = localStorage): PlannerData {
@@ -18,6 +18,7 @@ export function loadData(storage: Pick<Storage, "getItem"> = localStorage): Plan
       templates: Array.isArray(parsed.templates) ? parsed.templates : [],
       completed: parsed.completed ?? {},
       reviews: parsed.reviews ?? {},
+      todos: Array.isArray(parsed.todos) ? parsed.todos : [],
       version: 1,
     };
   } catch {
